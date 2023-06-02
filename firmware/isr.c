@@ -13,8 +13,14 @@ void isr(void);
 
 uint16_t flag;
 
+#ifdef USER_PROJ_IRQ0_EN
+uint32_t counter = 0xFFFF0000;
+#endif
+
 void isr(void)
 {
+
+#ifndef USER_PROJ_IRQ0_EN
 //	__attribute__((unused)) unsigned int irqs;
 //
 //	irqs = irq_pending() & irq_getmask();
@@ -39,6 +45,16 @@ void isr(void)
 //        reg_la0_data = 0x20000;
 //        flag = 1;
 //    }
+#else
+    uint32_t irqs = irq_pending() & irq_getmask();
+
+    if ( irqs & (1 << USER_IRQ_0_INTERRUPT)) {
+        user_irq_0_ev_pending_write(1); //Clear Interrupt Pending Event
+        counter = counter - 0x10000;
+        reg_mprj_datal = counter;
+    }
+#endif
+
     return;
 
 //#ifndef UART_POLLING

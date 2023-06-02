@@ -18,6 +18,9 @@
 // This include is relative to $CARAVEL_PATH (see Makefile)
 #include <defs.h>
 #include <stub.c>
+#ifdef USER_PROJ_IRQ0_EN
+#include <irq_vex.h>
+#endif
 
 // --------------------------------------------------------
 
@@ -32,6 +35,9 @@
 void main()
 {
 	int j;
+#ifdef USER_PROJ_IRQ0_EN	
+	int mask;
+#endif
 
 	/* Set up the housekeeping SPI to be connected internally so	*/
 	/* that external pin changes don't affect it.			*/
@@ -126,5 +132,15 @@ void main()
 	//print("\n");
 	//print("Monitor: Test 1 Passed\n\n");	// Makes simulation very long!
 	reg_mprj_datal = 0xAB510000;
+	
+#ifdef USER_PROJ_IRQ0_EN	
+	// unmask USER_IRQ_0_INTERRUPT
+	mask = irq_getmask();
+	mask |= 1 << USER_IRQ_0_INTERRUPT;
+	irq_setmask(mask);
+	// enable user_irq_0_ev_enable
+	user_irq_0_ev_enable_write(1);	
+#endif
+
 }
 

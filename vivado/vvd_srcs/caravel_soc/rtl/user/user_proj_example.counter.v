@@ -94,7 +94,7 @@ module user_proj_example #(
     assign io_oeb = {(`MPRJ_IO_PADS-1){rst}};
 
     // IRQ
-    assign irq = 3'b000;	// Unused
+    assign irq[2:1] = 2'b00;	// Unused
 
     // LA
     assign la_data_out = {{(127-BITS){1'b0}}, count};
@@ -116,6 +116,7 @@ module user_proj_example #(
         .wstrb(wstrb),
         .la_write(la_write),
         .la_input(la_data_in[63:32]),
+        .irq(irq[0]),
         .count(count)
     );
 
@@ -133,6 +134,7 @@ module counter #(
     input [BITS-1:0] la_input,
     output reg ready,
     output reg [BITS-1:0] rdata,
+    output reg irq,
     output reg [BITS-1:0] count
 );
     //reg ready;
@@ -143,10 +145,16 @@ module counter #(
         if (reset) begin
             count <= 0;
             ready <= 0;
+            irq <= 0;
         end else begin
             ready <= 1'b0;
             if (~|la_write) begin
                 count <= count + 1;
+                if (count[15:0]==16'h8000) begin
+                    irq <= 1'b1;
+                end else begin
+                    irq <= 1'b0;
+                end
             end
             if (valid && !ready) begin
                 ready <= 1'b1;

@@ -160,6 +160,10 @@ module counter_la_tb;
 		wait(checkbits == 16'hAB41);
 		wait(checkbits == 16'hAB51);
 		$display("LA Test 2 passed");
+		`ifdef USER_PROJ_IRQ0_EN
+			wait(checkbits == 16'hFFFC);
+			$display("USER_PROJ_IRQ0 Test passed");
+		`endif 		
 		#10000;
 		$finish;
 	end
