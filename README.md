@@ -1,3 +1,7 @@
+# Join Us!
+* [Fill in the form](https://docs.google.com/forms/d/1hfK0vA_avZ0H4KnYhFmH69pmo52hHpTpMq58AdvnQfQ) to get future information of Caravel SoC FPGA and [FSIC program](https://github.com/bol-edu/fsic_fpga)
+* Access BOLEDU online lab facilities (FPGA boards)
+
 # Caravel SoC FPGA
 [Boledu](https://www.boledu.org/) proposed a Caravel SoC FPGA validation platform which was ported from [Efabless Caravel harness SoC](https://caravel-harness.readthedocs.io/en/latest/#efabless-caravel-harness-soc) project (Google Open Source Silicon) and could be ran on [Xilinx PYNQ-Z2](https://www.xilinx.com/support/university/xup-boards/XUPPYNQ-Z2.html) FPGA board.  
 The Boledu [Caravel SoC](https://github.com/bol-edu/caravel-soc) ([MPW8-C](https://github.com/efabless/caravel_user_project/tree/mpw-8c) code base) was removed all SKY PDK dependencies to provide quickly logic simulation for development. Two software debugging enhances were proposed and implemented. Firstly, an open source [GDBWave](https://tomverbeure.github.io/2022/02/20/GDBWave-Post-Simulation-RISCV-SW-Debugging.html) was integrated into Caravel SoC design flow. The GDBWave parses the waveform after RTL simulation to manipulate GDB debugging with VexRiscv CPU. Secondly, a proposed [Riscv-Tracer](https://github.com/bol-edu/caravel-soc/tree/cpu-trace) was helped to translate waveform display to RISC-V instructions representation.  
