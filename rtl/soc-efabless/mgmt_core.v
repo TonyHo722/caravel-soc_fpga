@@ -4499,7 +4499,7 @@ always @(*) begin
 end
 always @(*) begin
 	la_output = 128'd0;
-	$display($time, "=> 1st a_output=%x", la_output);
+	$display($time, "=> 1st la_output=%x", la_output);
 	la_output[0] = la_out_storage[0];
 	la_output[1] = la_out_storage[1];
 	la_output[2] = la_out_storage[2];
