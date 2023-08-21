@@ -140,6 +140,7 @@ void main()
 	irq_setmask(mask);
 	// enable user_irq_0_ev_enable
 	user_irq_0_ev_enable_write(1);	
+    while(1);
 #endif
 
 }
