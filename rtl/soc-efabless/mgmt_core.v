@@ -4499,6 +4499,7 @@ always @(*) begin
 end
 always @(*) begin
 	la_output = 128'd0;
+	$display($time, "=> 1st a_output=%x", la_output);
 	la_output[0] = la_out_storage[0];
 	la_output[1] = la_out_storage[1];
 	la_output[2] = la_out_storage[2];
@@ -4627,6 +4628,7 @@ always @(*) begin
 	la_output[125] = la_out_storage[125];
 	la_output[126] = la_out_storage[126];
 	la_output[127] = la_out_storage[127];
+	$display($time, "=> 2nd la_output=%x", la_output);
 end
 assign spi_enabled = spi_enabled_storage;
 assign user_irq_ena = user_irq_ena_storage;
