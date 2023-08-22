@@ -4758,7 +4758,7 @@ end
 always @(*) begin
 	//tony_debug next_state = 1'd0;
 	//$display($time, "=> 1st next_state=%x", next_state);
-    next_state = 1'd0;
+    //next_state = 1'd0;
 	//$display($time, "=> 2nd next_state=%x", next_state);
 	next_state = state;
 	//$display($time, "=> 3rd next_state=%x", next_state);
