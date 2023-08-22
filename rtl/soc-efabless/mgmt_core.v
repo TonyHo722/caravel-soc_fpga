@@ -4740,7 +4740,11 @@ assign gpioin5_gpioin5_irq = (gpioin5_pending_status & gpioin5_enable_storage);
 assign gpioin5_gpioin5_status = gpioin5_gpioin5_trigger;
 always @(*) begin
 	//tony_debug next_state = 1'd0;
+	$display($time, "=> 1st next_state=%x", next_state);
+    next_state = 1'd0;
+	$display($time, "=> 2nd next_state=%x", next_state);
 	next_state = state;
+	$display($time, "=> 3rd next_state=%x", next_state);
 	case (state)
 		1'd1: begin
 			next_state = 1'd0;
@@ -4751,6 +4755,7 @@ always @(*) begin
 			end
 		end
 	endcase
+	$display($time, "=> 4th next_state=%x", next_state);
 end
 always @(*) begin
 	mgmtsoc_dat_w = 32'd0;
