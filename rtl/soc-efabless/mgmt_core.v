@@ -4738,9 +4738,23 @@ always @(*) begin
 end
 assign gpioin5_gpioin5_irq = (gpioin5_pending_status & gpioin5_enable_storage);
 assign gpioin5_gpioin5_status = gpioin5_gpioin5_trigger;
+
 always @(next_state) begin
 	$display($time, "=> dump next_state=%x", next_state);
 end
+
+always @(mgmtsoc_wishbone_cyc) begin
+	$display($time, "=> dump mgmtsoc_wishbone_cyc=%x", mgmtsoc_wishbone_cyc);
+end
+
+always @(mgmtsoc_wishbone_stb) begin
+	$display($time, "=> dump mgmtsoc_wishbone_stb=%x", mgmtsoc_wishbone_stb);
+end
+
+always @(state) begin
+	$display($time, "=> dump state=%x", state);
+end    
+
 always @(*) begin
 	//tony_debug next_state = 1'd0;
 	//$display($time, "=> 1st next_state=%x", next_state);
