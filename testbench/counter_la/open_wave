@@ -1,0 +1,1 @@
+twinwave -o counter_la.v.vcd waveform_irq2.gtkw + -o counter_la.sv.vcd waveform_irq2.gtkw &

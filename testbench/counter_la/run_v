@@ -16,14 +16,13 @@ sed -ie 's/@10/@00/g' counter_la.hex
 
 rm -f counter_la.elf counter_la.hexe
 
-xvlog -d FUNCTIONAL -d SIM -d DUNIT_DELAY=#1 -d USE_POWER_PINS -f ./include.rtl.list.xsim counter_la_tb.sv \
-      -sv \
+xvlog -d FUNCTIONAL -d SIM -d DUNIT_DELAY=#1 -d USE_POWER_PINS -f ./include.rtl.list.xsim counter_la_tb.v \
       -d CPU_TRACE \
 	-d USER_PROJ_IRQ0_EN
 
 xelab -top counter_la_tb -snapshot counter_la_tb_elab
 xsim counter_la_tb_elab -R
-mv counter_la.vcd counter_la.sv.vcd
-mv xvlog.log xvlog.sv.log
-mv xsim.log xsim.sv.log
-mv xelab.log xelab.sv.log
+mv counter_la.vcd counter_la.v.vcd
+mv xvlog.log xvlog.v.log
+mv xsim.log xsim.v.log
+mv xelab.log xelab.v.log
